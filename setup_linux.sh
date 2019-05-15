@@ -11,7 +11,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 #ssh key
-ssh-keygen -t rsa -C "louis@realisations.net"
+ssh-keygen -t rsa -C $(hostname)
 
 # docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
