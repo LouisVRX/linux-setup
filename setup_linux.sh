@@ -25,3 +25,15 @@ sudo apt-get install -y python-pip python3 python3-pip bpython3 python3-numpy py
 python3 -m pip install --user vex
 python3 -m pip install tornado setuptools pandas matplotlib seaborn jedi cython
 export PYTHONSTARTUP="$(python3 -m jedi repl)"
+
+
+# vim llynch config
+cd ~
+git clone https://github.com/yohtm/vim-config.git vim-config
+mv ~/.vimrc ~/.vimrc.old
+mv ~/.vim ~/.vim.old
+ln -s $(readlink -f vim-config/vimrc) ~/.vimrc
+ln -s $(readlink -f vim-config/vim) ~/.vim
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall  +qall
