@@ -17,9 +17,11 @@ ssh-keygen -t rsa -C $(hostname)
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt update
-sudo apt install docker-ce docker-compose -y
+sudo apt install docker-ce -y
+sudo pip install docker-compose
 sudo usermod -aG docker $USER
-sudo apt-get purge docker-credential-pass
+sudo rm /usr/bin/docker-credential-secretservice
+echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
 
 # Python
 sudo apt-get install -y python-pip python3 python3-pip bpython3 python3-numpy python3-opencv
