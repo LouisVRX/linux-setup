@@ -19,6 +19,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update
 sudo apt install docker-ce docker-compose -y
 sudo usermod -aG docker $USER
+sudo apt-get purge docker-credential-pass
 
 # Python
 sudo apt-get install -y python-pip python3 python3-pip bpython3 python3-numpy python3-opencv
