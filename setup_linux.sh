@@ -22,6 +22,7 @@ sudo pip install docker-compose
 sudo usermod -aG docker $USER
 sudo rm /usr/bin/docker-credential-secretservice
 echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+echo "alias dck='docker-compose'" >> ~/.bashrc
 
 # Python
 sudo apt-get install -y python-pip python3 python3-pip bpython3 python3-numpy python3-opencv
