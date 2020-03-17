@@ -8,28 +8,30 @@ sudo apt-get install -y git vim apt-transport-https ca-certificates curl softwar
 
 #fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --all
 
 #ssh key
 ssh-keygen -t rsa -C $(hostname)
 
-# docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt update
-sudo apt install docker-ce -y
-sudo pip install docker-compose
-sudo usermod -aG docker $USER
-sudo rm /usr/bin/docker-credential-secretservice
-echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
-echo "alias dck='docker-compose'" >> ~/.bashrc
-
 # Python
-sudo apt-get install -y python-pip python3 python3-pip bpython3 python3-numpy python3-opencv
+sudo apt-get install -y python-pip python3 python3-pip
 python3 -m pip install --user vex
-python3 -m pip install tornado setuptools pandas matplotlib seaborn jedi cython
+python3 -m pip install jedi
 export PYTHONSTARTUP="$(python3 -m jedi repl)"
 
+# docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update
+sudo apt install docker-ce -y
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo usermod -aG docker $USER
+sudo rm /usr/bin/docker-credential-secretservice
+echo "alias dck='docker-compose'" >> ~/.bashrc
+
+# For vex and docker-compose
+echo 'export PATH=$PATH:/usr/local/bin:~/.local/bin/' >> ~/.bashrc
 
 # vim llynch config
 cd ~
